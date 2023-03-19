@@ -42,5 +42,45 @@ namespace Items.Services
             }
             return filterList;
         }
+
+        public void UpdateItem(Item item)
+        {
+            if (item != null)
+            {
+                foreach(Item i in _items)
+                {
+                    if(item.Id == i.Id)
+                    {
+                        i.Name = item.Name;
+                        i.Price = item.Price;
+                    }
+                }
+            }
+        }
+
+        public Item GetItem(int id)
+        {
+            foreach(var item in _items)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }      
+            }           
+            return null;
+        }
+
+        public Item DeleteItem(int id)
+        {
+            foreach(Item i in _items)
+            {
+                if(i.Id == id)
+                {
+                    _items.Remove(i);
+                    return i;
+                }
+            }
+            return null;
+        }
     }
 }
