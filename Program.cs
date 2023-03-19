@@ -1,3 +1,4 @@
+using Items.Models;
 using Items.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IItemService, ItemService>();
-builder.Services.AddTransient<JsonFileItemService>();
+builder.Services.AddTransient<JsonFileService<Item>>();
+builder.Services.AddTransient<JsonFileService<User>>();
 builder.Services.AddSingleton<UserService, UserService>();
 builder.Services.Configure<CookiePolicyOptions>(options => {
     // This lambda determines whether user consent for non-essential cookies is needed for a given request.
