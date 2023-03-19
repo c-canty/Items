@@ -70,13 +70,17 @@ namespace Items.Services
 
         public Item GetItem(int id)
         {
-            foreach(var item in _items)
-            {
-                if (item.Id == id)
-                {
-                    return item;
-                }      
-            }           
+
+            Models.Item item = _items.Find(i => i.Id.Equals(id));
+            if(item != null)    
+            return item;
+            //foreach(var item in _items)
+            //{
+            //    if (item.Id == id)
+            //    {
+            //        return item;
+            //    }      
+            //}           
             return null;
         }
 
