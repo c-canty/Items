@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 1,
+    "Name": "PC",
+    "Price": 5999
+  },
+  {
+    "Id": 2,
+    "Name": "Sk\u00E6rm",
+    "Price": 1999
+  },
+  {
+    "Id": 3,
+    "Name": "Tastatur",
+    "Price": 999
+  }
+]
