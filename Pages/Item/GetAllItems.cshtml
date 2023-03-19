@@ -5,63 +5,89 @@
 
 <h1>Items</h1>
 
-<form method="post" class="form-inline">
-    <input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
-    <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
-</form>
-<form method="post" class="form-inline">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Min</span>
-        </div>
-        <input asp-for="MinPrice" class="form-control mr-1" />
+<div class="row">
+	<div class="col-4"><h5>Search Name</h5></div>
+	<div class="col-4"><h5>Filter Price</h5></div>
+	<div class="col-4"></div>
+</div>
 
-        <div class="input-group-prepend">
-            <span class="input-group-text">Max</span>
-        </div>
-        <input asp-for="MaxPrice" class="form-control mr-1" />
-        <input type="submit" asp-page-handler="PriceFilter" value="Filter" class="btn btn-primary" />
-    </div>
-</form>
+<div class="row">
+	<div class="col-4">
+		<form method="post" class="form-inline">
+			<div class="input-group mb-3">
+				<input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
+				<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
 
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                Options
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var i in Model.Items)
-        {
-            <tr>
-                <td>
-                    @i.Id
-                </td>
-                <td>
-                    @i.Name
-                </td>
-                <td>
-                    @i.Price
-                </td>
-                <td>
-                    <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditItem" asp-route-id="@i.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteItem" asp-route-id="@i.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
+	<div class="col-5">
+		<form method="post" class="form-inline">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Min</span>
+				</div>
+				<input asp-for="MinPrice" class="form-control mr-1"/>
+				<div class="input-group-prepend">
+					<span class="input-group-text">Max</span>
+				</div>
+				<input asp-for="MaxPrice" class="form-control mr-1"/>
+				<input type="submit" asp-page-handler="PriceFilter" value="Filter" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+
+	<div class="col-2"></div>
+</div>
+
+<table class="table table-bordered table-hover table-striped table-opacity" width="60%">
+	<colgroup>
+		<col style="width : 5%">
+		<col style="width : 77%">
+		<col style="width : 9%">
+		<col style="width : 9%">
+	</colgroup>
+	<thead>
+		<tr class="btn-secondary active">
+			<th>
+				Id
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+				Price
+			</th>
+			<th>
+				Actions
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.Items != null)
+		{
+			foreach (var item in Model.Items)
+			{
+				<tr class="btn-secondary">
+					<td>
+						@item.Id
+					</td>
+					<td>
+						@item.Name
+					</td>
+					<td>
+						@item.Price
+					</td>
+					<td>
+						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditItem" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteItem" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
 </table>
+
 <p>
-    <a class="btn btn-primary" asp-page="CreateItem"> Create a new Item </a>
+	<a class="btn btn-primary" asp-page="CreateItem"> Create a new Item </a>
 </p>

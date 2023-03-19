@@ -5,8 +5,15 @@ namespace Items.Services
 {
     public class ItemService : IItemService
     {
+        private JsonFileItemService JsonFileItemService { get; set; }
 
-        private List<Item> _items = MockItems.GetMockItems();
+        private List<Item> _items { get; set; }
+        public ItemService(JsonFileItemService jsonFileItemService)
+        {
+            JsonFileItemService = jsonFileItemService;
+            //_items = MockItems.GetMockItems();
+            _items = JsonFileItemService.GetJsonItems().ToList();
+        }
 
         public List<Item> GetAllItems()
         {
@@ -16,7 +23,9 @@ namespace Items.Services
         public void AddItem(Item item)
         {
             _items.Add(item);
+            JsonFileItemService.SaveJsonItems(_items);
         }
+
         public IEnumerable<Item> NameSearch(string str)
         {
             List<Item> nameSearch = new List<Item>();
@@ -47,14 +56,15 @@ namespace Items.Services
         {
             if (item != null)
             {
-                foreach(Item i in _items)
+                foreach (Item i in _items)
                 {
-                    if(item.Id == i.Id)
+                    if (i.Id == item.Id)
                     {
                         i.Name = item.Name;
                         i.Price = item.Price;
                     }
                 }
+                JsonFileItemService.SaveJsonItems(_items);
             }
         }
 
@@ -70,17 +80,23 @@ namespace Items.Services
             return null;
         }
 
-        public Item DeleteItem(int id)
+        public Item DeleteItem(int itemId)
         {
-            foreach(Item i in _items)
+            Item itemToBeDeleted = null;
+            foreach (Item item in _items)
             {
-                if(i.Id == id)
+                if (item.Id == itemId)
                 {
-                    _items.Remove(i);
-                    return i;
+                    itemToBeDeleted = item;
+                    break;
                 }
             }
-            return null;
+            if (itemToBeDeleted != null)
+            {
+                _items.Remove(itemToBeDeleted);
+                JsonFileItemService.SaveJsonItems(_items);
+            }
+            return itemToBeDeleted;
         }
     }
 }
