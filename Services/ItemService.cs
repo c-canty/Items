@@ -12,5 +12,10 @@ namespace Items.Services
         {
             return _items;
         }
+
+        public void AddItem(Item item)
+        {
+            _items.Add(item);
+        }
     }
 }
