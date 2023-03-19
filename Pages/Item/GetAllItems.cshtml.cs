@@ -12,7 +12,10 @@ namespace Items.Pages.Item
         public IItemService _itemService { get; set; }
 
         [BindProperty] public string SearchString { get; set; }
-        
+
+        [BindProperty] public int MinPrice { get; set; }
+        [BindProperty] public int MaxPrice { get; set; }
+
         public GetAllItemsModel(IItemService itemService)
         {
             _itemService = itemService;
@@ -26,6 +29,11 @@ namespace Items.Pages.Item
         public IActionResult OnPostNameSearch()
         {
             Items = _itemService.NameSearch(SearchString).ToList();
+            return Page();
+        }
+        public IActionResult OnPostPriceFilter()
+        {
+            Items = _itemService.PriceFilter(MaxPrice,MinPrice).ToList();
             return Page();
         }
     }

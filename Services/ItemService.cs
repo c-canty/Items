@@ -30,5 +30,17 @@ namespace Items.Services
 
             return nameSearch;
         }
+        public IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0)
+        {
+            List<Item> filterList = new List<Item>();
+            foreach(Item item in _items)
+            {
+                if((minPrice == 0 && item.Price <= maxPrice) || (maxPrice == 0 && item.Price >= minPrice) || (item.Price >= minPrice && item.Price <= maxPrice))
+                {
+                    filterList.Add(item);
+                }
+            }
+            return filterList;
+        }
     }
 }
