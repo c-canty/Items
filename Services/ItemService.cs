@@ -5,14 +5,14 @@ namespace Items.Services
 {
     public class ItemService : IItemService
     {
-        private JsonFileItemService JsonFileItemService { get; set; }
+        private JsonFileService<Item> JsonFileService { get; set; }
 
         private List<Item> _items { get; set; }
-        public ItemService(JsonFileItemService jsonFileItemService)
+        public ItemService(JsonFileService<Item> jsonFileService)
         {
-            JsonFileItemService = jsonFileItemService;
+            JsonFileService = jsonFileService;
             //_items = MockItems.GetMockItems();
-            _items = JsonFileItemService.GetJsonItems().ToList();
+            _items = JsonFileService.GetJsonObjects().ToList();
         }
 
         public List<Item> GetAllItems()
@@ -23,7 +23,7 @@ namespace Items.Services
         public void AddItem(Item item)
         {
             _items.Add(item);
-            JsonFileItemService.SaveJsonItems(_items);
+            JsonFileService.SaveJsonObjects(_items);
         }
 
         public IEnumerable<Item> NameSearch(string str)
@@ -64,7 +64,7 @@ namespace Items.Services
                         i.Price = item.Price;
                     }
                 }
-                JsonFileItemService.SaveJsonItems(_items);
+                JsonFileService.SaveJsonObjects(_items);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Items.Services
             if (itemToBeDeleted != null)
             {
                 _items.Remove(itemToBeDeleted);
-                JsonFileItemService.SaveJsonItems(_items);
+                JsonFileService.SaveJsonObjects(_items);
             }
             return itemToBeDeleted;
         }

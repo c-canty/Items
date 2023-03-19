@@ -6,11 +6,13 @@ namespace Items.Services
 	public class UserService
 	{
 		public List<User> Users { get; set; }
+		private JsonFileService<User> _jsonFileService;
 
-		public UserService()
+		public UserService(JsonFileService<User> jsonFileService)
 		{
-			Users = MockUsers.GetMockUsers();
-		}
+			_jsonFileService = jsonFileService;
+            Users = _jsonFileService.GetJsonObjects().ToList();
+        }
 
 		public List<User> GetUsers()
 		{
