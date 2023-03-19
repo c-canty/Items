@@ -5,6 +5,11 @@
 
 <h1>Items</h1>
 
+<form method="post" class="form-inline">
+    <input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
+    <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+</form>
+
 <table class="table table-bordered table-hover table-striped">
     <thead>
         <tr>

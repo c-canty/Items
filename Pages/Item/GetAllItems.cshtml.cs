@@ -10,6 +10,8 @@ namespace Items.Pages.Item
         public List<Models.Item> Items { get; private set; }
 
         public IItemService _itemService { get; set; }
+
+        [BindProperty] public string SearchString { get; set; }
         
         public GetAllItemsModel(IItemService itemService)
         {
@@ -19,6 +21,12 @@ namespace Items.Pages.Item
         public void OnGet()
         {
             Items = _itemService.GetAllItems();
+        }
+
+        public IActionResult OnPostNameSearch()
+        {
+            Items = _itemService.NameSearch(SearchString).ToList();
+            return Page();
         }
     }
 }

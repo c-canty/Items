@@ -17,5 +17,18 @@ namespace Items.Services
         {
             _items.Add(item);
         }
+        public IEnumerable<Item> NameSearch(string str)
+        {
+            List<Item> nameSearch = new List<Item>();
+            foreach (Item item in _items)
+            {
+                if (item.Name.ToLower().Contains(str.ToLower()))
+                {
+                    nameSearch.Add(item);
+                }
+            }
+
+            return nameSearch;
+        }
     }
 }
