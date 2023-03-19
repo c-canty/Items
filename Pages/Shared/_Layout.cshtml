@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Items.Pages.LogIn
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,7 +21,7 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
@@ -32,6 +33,24 @@
                             <a class="nav-link" asp-area="" asp-page="Item/GetAllItems">Items</a>
                         </li>
                     </ul>
+                    @{
+                        if (LogInPageModel.LoggedInUser == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/LogIn/LoginPage">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item nav-link mr-3">
+                                User: @LogInPageModel.LoggedInUser.UserName
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/LogIn/LogoutPage">Logout</a>
+                            </li>
+                        }
+                    }
                 </div>
             </div>
         </nav>
@@ -41,7 +60,9 @@
             @RenderBody()
         </main>
     </div>
+    <ul class="navbar-nav">
 
+</ul>
     <footer class="border-top footer text-muted mt-auto">
         <div class="container">
             &copy; 2023 - Items - <a asp-area="" asp-page="/Privacy">Privacy</a>
