@@ -29,15 +29,26 @@ namespace Items.Services
         public IEnumerable<Item> NameSearch(string str)
         {
             List<Item> nameSearch = new List<Item>();
-            foreach (Item item in _items)
+            if(str != null) 
             {
-                if (item.Name.ToLower().Contains(str.ToLower()))
+                Item item = _items.Find(i => i.Name.ToLower().Contains(str.ToLower()));
+                if (item != null)
                 {
                     nameSearch.Add(item);
                 }
+                return nameSearch;
             }
-
-            return nameSearch;
+            else
+            {
+                return _items;
+            }
+            //foreach (Item item in _items)
+            //{
+            //    if (item.Name.ToLower().Contains(str.ToLower()))
+            //    {
+            //        nameSearch.Add(item);
+            //    }
+            //}
         }
         public IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0)
         {
