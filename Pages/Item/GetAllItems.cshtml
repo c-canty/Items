@@ -51,37 +51,31 @@
 		<tr class="btn-secondary active">
 			
 			<th>
-				
-			Id
-			<a asp-page-handler="SortById" data-toggle="tooltip" title="Sort By Id">
-				<i class="fa fa-sort-up"></i>
-			</a> 
-				
-			<a asp-page-handler="SortByIdDesc" data-toggle="tooltip" title="Sort By Id Desc">
-				<i class="fa fa-sort-desc"></i>
-			</a>
-			
-			</th>
-			
-			<th>
-				Name
-				<a asp-page-handler="SortByName" data-toggle="tooltip" title="Sort By Name">
-					<i class="fa fa-sort-up"></i>
-				</a>
-
-				<a asp-page-handler="SortByNameDesc" data-toggle="tooltip" title="Sort By Name Desc">
-					<i class="fa fa-sort-desc"></i>
-				</a>
+				<div class="d-flex justify-content-between p-0">
+					<div><h5>Id </h5></div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByIdDesc"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
 			</th>
 			<th>
-				Price
-				<a asp-page-handler="SortByPrice" data-toggle="tooltip" title="Sort By Price">
-					<i class="fa fa-sort-up"></i>
-				</a>
-
-				<a asp-page-handler="SortByPriceDesc" data-toggle="tooltip" title="Sort By Price Desc">
-					<i class="fa fa-sort-desc"></i>
-				</a>
+				<div class="d-flex justify-content-between p-0">
+					<div><h5>Id </h5></div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By Name" asp-page-handler="SortByName"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By Name Descending" asp-page-handler="SortByNameDesc"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div><h5>Id </h5></div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By Price" asp-page-handler="SortByPrice"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By Price Descending" asp-page-handler="SortByPriceDesc"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
 			</th>
 			<th>
 				Actions
