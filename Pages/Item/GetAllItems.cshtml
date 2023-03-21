@@ -42,21 +42,46 @@
 
 <table class="table table-bordered table-hover table-striped table-opacity" width="60%">
 	<colgroup>
-		<col style="width : 5%">
-		<col style="width : 77%">
+		<col style="width : 10%">
+		<col style="width : 72%">
 		<col style="width : 9%">
 		<col style="width : 9%">
 	</colgroup>
 	<thead>
 		<tr class="btn-secondary active">
+			
 			<th>
-				Id
+				
+			Id
+			<a asp-page-handler="SortById" data-toggle="tooltip" title="Sort By Id">
+				<i class="fa fa-sort-up"></i>
+			</a> 
+				
+			<a asp-page-handler="SortByIdDesc" data-toggle="tooltip" title="Sort By Id Desc">
+				<i class="fa fa-sort-desc"></i>
+			</a>
+			
 			</th>
+			
 			<th>
 				Name
+				<a asp-page-handler="SortByName" data-toggle="tooltip" title="Sort By Name">
+					<i class="fa fa-sort-up"></i>
+				</a>
+
+				<a asp-page-handler="SortByNameDesc" data-toggle="tooltip" title="Sort By Name Desc">
+					<i class="fa fa-sort-desc"></i>
+				</a>
 			</th>
 			<th>
 				Price
+				<a asp-page-handler="SortByPrice" data-toggle="tooltip" title="Sort By Price">
+					<i class="fa fa-sort-up"></i>
+				</a>
+
+				<a asp-page-handler="SortByPriceDesc" data-toggle="tooltip" title="Sort By Price Desc">
+					<i class="fa fa-sort-desc"></i>
+				</a>
 			</th>
 			<th>
 				Actions

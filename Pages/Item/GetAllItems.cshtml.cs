@@ -7,7 +7,7 @@ namespace Items.Pages.Item
 {
     public class GetAllItemsModel : PageModel
     {
-        public List<Models.Item> Items { get; private set; }
+        public IEnumerable<Models.Item> Items { get; private set; }
 
         public IItemService _itemService { get; set; }
 
@@ -25,8 +25,33 @@ namespace Items.Pages.Item
         {
             Items = _itemService.GetAllItems();
         }
+        public void OnGetSortById()
+        {
+            Items = _itemService.SortById();
+        }
+		public void OnGetSortByIdDesc()
+		{
+			Items = _itemService.SortByIdDesc();
+		}
 
-        public IActionResult OnPostNameSearch()
+		public void OnGetSortByName()
+		{
+			Items = _itemService.SortByName();
+		}
+		public void OnGetSortByNameDesc()
+		{
+			Items = _itemService.SortByNameDesc();
+		}
+		public void OnGetSortByPrice()
+		{
+			Items = _itemService.SortByPrice();
+		}
+		public void OnGetSortByPriceDesc()
+		{
+			Items = _itemService.SortByPriceDesc();
+		}
+
+		public IActionResult OnPostNameSearch()
         {
             Items = _itemService.NameSearch(SearchString).ToList();
             return Page();

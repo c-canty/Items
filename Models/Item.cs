@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace Items.Models
 {
-    public class Item
+    public class Item : IComparable<Item>
     {
         [Display(Name = "Item Id")]
         [Required(ErrorMessage = "Der skal angives et ID til Item")]
@@ -27,6 +28,12 @@ namespace Items.Models
             Id = id;
             Name = name;
             Price = price;
+        }
+
+        public int CompareTo(Item other)
+        {
+            if (other == null) return 1;
+            return Id.CompareTo(other.Id);
         }
     }
 }

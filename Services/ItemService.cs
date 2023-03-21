@@ -113,5 +113,57 @@ namespace Items.Services
             }
             return itemToBeDeleted;
         }
-    }
+
+        public IEnumerable<Item> SortById()
+        {
+            //_items.Sort();
+            //return _items;
+
+            IEnumerable<Item> list = from item in _items
+                       orderby item.Id ascending
+                       select item;
+            return list;
+                       
+        }
+
+		public IEnumerable<Item> SortByIdDesc()
+		{
+			IEnumerable<Item> list = from item in _items
+									 orderby item.Id descending
+									 select item;
+			return list;
+		}
+
+		public IEnumerable<Item> SortByName()
+		{
+			IEnumerable<Item> list = from item in _items
+									 orderby item.Name ascending
+									 select item;
+			return list;
+		}
+
+		public IEnumerable<Item> SortByNameDesc()
+		{
+			IEnumerable<Item> list = from item in _items
+									 orderby item.Name descending
+									 select item;
+			return list;
+		}
+
+		public IEnumerable<Item> SortByPrice()
+		{
+			IEnumerable<Item> list = from item in _items
+									 orderby item.Price ascending
+									 select item;
+			return list;
+		}
+
+		public IEnumerable<Item> SortByPriceDesc()
+		{
+			IEnumerable<Item> list = from item in _items
+									 orderby item.Price descending
+									 select item;
+			return list;
+		}
+	}
 }

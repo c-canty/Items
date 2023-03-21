@@ -11,6 +11,12 @@ namespace Items.Services
         void UpdateItem(Item item);
         Item GetItem(int id);
         Item DeleteItem(int id);
+        IEnumerable<Item> SortById();
+		IEnumerable<Item> SortByIdDesc();
+		IEnumerable<Item> SortByName();
+		IEnumerable<Item> SortByNameDesc();
+		IEnumerable<Item> SortByPrice();
+		IEnumerable<Item> SortByPriceDesc();
 
-    }
+	}
 }
