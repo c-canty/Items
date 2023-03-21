@@ -1,14 +1,22 @@
 [
   {
     "UserName": "Christian",
-    "Password": "1234"
+    "Password": "AQAAAAEAACcQAAAAEKKRy1dKBesQGwFASa9wr2W\u002B/EUeQe3\u002BpnkrXJhl2Iwolng7qGfvoXsES/Ksov426A=="
   },
   {
     "UserName": "Mads",
-    "Password": "5678"
+    "Password": "AQAAAAEAACcQAAAAEBnIM62Ub\u002BnyvqoIe5lgIYqlDaLW\u002BaV7XrxJnYA61SMxIcpFpgxDrT5jhp0DqT/ATQ=="
   },
   {
     "UserName": "Mille",
-    "Password": "2468"
+    "Password": "AQAAAAEAACcQAAAAEOWPL1AKIZvzsdmVBM73EZGDPgdH08Sw8RskhX5IQ2x3XKq9zWgkFcdsa7jqVoIBwA=="
+  },
+  {
+    "UserName": "admin",
+    "Password": "AQAAAAEAACcQAAAAEApr5KZpURC1CNtS8XrmwFuZaO8H0jPavy0CEsPKG/o9Hzh1J3Cft8QSDs24Lz9fyg=="
+  },
+  {
+    "UserName": "mikkel",
+    "Password": "AQAAAAEAACcQAAAAEH/TPOoaKY4wIAedRwPX\u002BqU2mihB3LgjIPq\u002BIgiAl0it5kkeq1fFJTUL31lN0lZ2BA=="
   }
 ]

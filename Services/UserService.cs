@@ -11,12 +11,19 @@ namespace Items.Services
 		public UserService(JsonFileService<User> jsonFileService)
 		{
 			_jsonFileService = jsonFileService;
-            Users = _jsonFileService.GetJsonObjects().ToList();
+			Users = _jsonFileService.GetJsonObjects().ToList();
+			//Users = MockUsers.GetMockUsers().ToList();
         }
 
 		public List<User> GetUsers()
 		{
 			return Users;
 		}
-	}
+
+        public void AddUser(User user)
+        {
+            Users.Add(user);
+            _jsonFileService.SaveJsonObjects(Users);
+        }
+    }
 }

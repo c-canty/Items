@@ -2,6 +2,7 @@ using Items.Models;
 using Items.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
@@ -33,14 +34,19 @@ namespace Items.Pages.LogIn
             List<User> users = _userService.Users;
             foreach(User user in users)
             {
-                if(UserName == user.UserName && Password == user.Password)
+                if(UserName == user.UserName)
                 {
-                    LoggedInUser = user;
-                    var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
+                    var passwordHasher = new PasswordHasher<string>();
+                    if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
+                    {
+                        LoggedInUser = user;
+                        var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
+                        if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                    return RedirectToPage("/Item/GetAllItems");
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                        return RedirectToPage("/Item/GetAllItems");
+                    }
                 }
             }
             Message = "Invalid attempt";
