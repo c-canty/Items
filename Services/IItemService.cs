@@ -8,15 +8,16 @@ namespace Items.Services
         void AddItem(Item item);
         IEnumerable<Item> NameSearch(string str);
         IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0);
-        void UpdateItem(Item item);
+        //void UpdateItem(Item item);
         Item GetItem(int id);
-        Item DeleteItem(int id);
+        //Item DeleteItem(int id);
         IEnumerable<Item> SortById();
 		IEnumerable<Item> SortByIdDesc();
 		IEnumerable<Item> SortByName();
 		IEnumerable<Item> SortByNameDesc();
 		IEnumerable<Item> SortByPrice();
 		IEnumerable<Item> SortByPriceDesc();
-
-	}
+        void UpdateItem(Item item);
+        Item DeleteItem(int id);
+    }
 }

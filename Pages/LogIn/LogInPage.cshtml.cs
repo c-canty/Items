@@ -12,7 +12,7 @@ namespace Items.Pages.LogIn
 {
     public class LogInPageModel : PageModel
     {
-        public static User LoggedInUser { get; set; } = null;
+        //public static User LoggedInUser { get; set; } = null;
 
         private UserService _userService;
 
@@ -39,7 +39,7 @@ namespace Items.Pages.LogIn
                     var passwordHasher = new PasswordHasher<string>();
                     if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
                     {
-                        LoggedInUser = user;
+                        //LoggedInUser = user;
                         var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
                         if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
 

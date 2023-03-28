@@ -33,8 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="Item/GetAllItems">Items</a>
                         </li>
+                        </li>
                         @{
-                            if (LogInPageModel.LoggedInUser != null && LogInPageModel.LoggedInUser.UserName == "admin")
+                            if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
@@ -42,24 +43,28 @@
                             }
                         }
                     </ul>
-                    @{
-                        if (LogInPageModel.LoggedInUser == null)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/LogIn/LoginPage">Login</a>
-                            </li>
+                    <ul class="navbar-nav">
+                        @{
+                            if (Context.User.Identity.Name == null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LoginPage">Login</a>
+                                </li>
+                            }
+                            else
+                            {
+                                if (Context.User.Identity.Name != null)
+                                {
+                                    <li class="nav-item nav-link mr-3">
+                                        User:  @Context.User.Identity.Name
+                                    </li>
+                                }
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/LogIn/LogoutPage">Logout</a>
+                                </li>
+                            }
                         }
-                        else
-                        {
-                            <li class="nav-item nav-link mr-3">
-                                User: @LogInPageModel.LoggedInUser.UserName
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/LogIn/LogoutPage">Logout</a>
-                            </li>
-                        }
-                    }
+                    </ul>
                     
                 </div>
             </div>

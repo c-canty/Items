@@ -1,4 +1,5 @@
-﻿using Items.MockData;
+﻿using Items.Migrations;
+using Items.MockData;
 using Items.Models;
 
 namespace Items.Services
@@ -7,23 +8,28 @@ namespace Items.Services
 	{
 		public List<User> Users { get; set; }
 		private JsonFileService<User> _jsonFileService;
+		private DBService<User> _dbService;
 
-		public UserService(JsonFileService<User> jsonFileService)
+		public UserService(DBService<User> dBService, JsonFileService<User> jsonFileService)
 		{
+			_dbService = dBService;
 			_jsonFileService = jsonFileService;
-			Users = _jsonFileService.GetJsonObjects().ToList();
+			Users = _dbService.GetObjects().Result;
 			//Users = MockUsers.GetMockUsers().ToList();
-        }
+
+		}
 
 		public List<User> GetUsers()
-		{
+        {
 			return Users;
-		}
+            
+        }
 
         public void AddUser(User user)
         {
             Users.Add(user);
-            _jsonFileService.SaveJsonObjects(Users);
+            _dbService.AddObject(user);
+            _dbService.SaveObject(Users);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Items.EFDbContext;
 using Items.Models;
 using Items.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -11,6 +12,9 @@ builder.Services.AddSingleton<IItemService, ItemService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
 builder.Services.AddSingleton<UserService, UserService>();
+builder.Services.AddSingleton<DBService<User>>();
+builder.Services.AddSingleton<DBService<Item>>();
+builder.Services.AddDbContext<ItemDbContext>();
 builder.Services.Configure<CookiePolicyOptions>(options => {
     // This lambda determines whether user consent for non-essential cookies is needed for a given request.
     options.CheckConsentNeeded = context => true;
@@ -19,7 +23,7 @@ builder.Services.Configure<CookiePolicyOptions>(options => {
     cookieOptions.LoginPath = "/Login/LoginPage";
 }); builder.Services.AddMvc().AddRazorPagesOptions(options => {
     options.Conventions.AuthorizeFolder("/Item");
-}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
 var app = builder.Build();
 

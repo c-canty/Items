@@ -5,14 +5,17 @@ namespace Items.Services
 {
     public class ItemService : IItemService
     {
-        private JsonFileService<Item> JsonFileService { get; set; }
+        private JsonFileService<Item> _jsonFileService { get; set; }
+        private DBService<Item> _dbService { get; set; }
 
         private List<Item> _items { get; set; }
-        public ItemService(JsonFileService<Item> jsonFileService)
+        public ItemService(JsonFileService<Item> jsonFileService, DBService<Item> dBService)
         {
-            JsonFileService = jsonFileService;
+            _jsonFileService = jsonFileService;
+            _dbService = dBService;
             //_items = MockItems.GetMockItems();
-            _items = JsonFileService.GetJsonObjects().ToList();
+            //_items = _jsonFileService.GetJsonObjects().ToList();
+            _items = _dbService.GetObjects().Result;
         }
 
         public List<Item> GetAllItems()
@@ -23,7 +26,8 @@ namespace Items.Services
         public void AddItem(Item item)
         {
             _items.Add(item);
-            JsonFileService.SaveJsonObjects(_items);
+            _dbService.AddObject(item);
+            _dbService.SaveObject(_items);
         }
 
         public IEnumerable<Item> NameSearch(string str)
@@ -75,7 +79,8 @@ namespace Items.Services
                         i.Price = item.Price;
                     }
                 }
-                JsonFileService.SaveJsonObjects(_items);
+                _dbService.UpdateObject(item);
+                _dbService.SaveObject(_items);
             }
         }
 
@@ -109,7 +114,8 @@ namespace Items.Services
             if (itemToBeDeleted != null)
             {
                 _items.Remove(itemToBeDeleted);
-                JsonFileService.SaveJsonObjects(_items);
+                _dbService.DeleteObject(itemToBeDeleted);
+                _dbService.SaveObject(_items);
             }
             return itemToBeDeleted;
         }
