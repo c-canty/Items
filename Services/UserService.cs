@@ -31,5 +31,11 @@ namespace Items.Services
             _dbService.AddObject(user);
             _dbService.SaveObject(Users);
         }
+
+        public User GetUserByUserName(string userName)
+		{
+			User user = Users.Find(_user => _user.UserName == userName);
+			return user;
+		}
     }
 }
