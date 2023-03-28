@@ -13,6 +13,7 @@ namespace Items.Models
         [Required] public int ItemId { get; set; }
         [Required] public Item Item { get; set; }
         [Required] public int Count { get; set; }
+        
         //public virtual ICollection<Order> Orders { get; set; }
 
         public Order()
@@ -28,6 +29,7 @@ namespace Items.Models
             ItemId = itemId;
             Item = item;
             Count = count;
+            
         }
     }
 }

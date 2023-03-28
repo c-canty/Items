@@ -13,6 +13,7 @@ builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
 builder.Services.AddSingleton<UserService, UserService>();
 builder.Services.AddSingleton<OrderService, OrderService>();
+builder.Services.AddSingleton<UserDBService, UserDBService>();
 builder.Services.AddSingleton<DBService<User>>();
 builder.Services.AddSingleton<DBService<Item>>();
 builder.Services.AddSingleton<DBService<Order>>();

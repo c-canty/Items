@@ -1,4 +1,5 @@
-﻿using Items.Migrations;
+﻿using Items.DAO;
+using Items.Migrations;
 using Items.MockData;
 using Items.Models;
 
@@ -7,10 +8,11 @@ namespace Items.Services
 	public class UserService
 	{
 		public List<User> Users { get; set; }
+		public List<OrderDAO> UserOrders { get; set; }
 		private JsonFileService<User> _jsonFileService;
-		private DBService<User> _dbService;
+		private UserDBService _dbService;
 
-		public UserService(DBService<User> dBService, JsonFileService<User> jsonFileService)
+		public UserService(UserDBService dBService, JsonFileService<User> jsonFileService)
 		{
 			_dbService = dBService;
 			_jsonFileService = jsonFileService;
@@ -37,5 +39,12 @@ namespace Items.Services
 			User user = Users.Find(_user => _user.UserName == userName);
 			return user;
 		}
-    }
+
+		public IEnumerable<OrderDAO> GetUserOrders(User user)
+		{
+			UserOrders = _dbService.GetOrdersByUserIdAsync(user.Id);
+			return UserOrders;
+		}
+
+	}
 }

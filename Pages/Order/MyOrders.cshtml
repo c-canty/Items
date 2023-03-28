@@ -1,0 +1,73 @@
+﻿@page
+@model Items.Pages.Order.MyOrdersModel
+@{
+}
+<h1> My Order</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Order Id
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                User Id
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                Item Id
+            </th>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Price Per Item
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Total Price
+            </th>
+        </tr>       
+    </thead>
+    <tbody>
+        @foreach(var order in Model.MyOrders)
+        {
+            <tr>
+                <td>
+                    @order.OrderId
+                </td>
+                <td>
+                    @order.Date
+                </td>
+                <td>
+                    @order.UserId
+                </td>
+                <td>
+                    @order.UserName
+                </td>
+                <td>
+                    @order.ItemId
+                </td>
+                <td>
+                    @order.ItemName
+                </td>
+                <td>
+                    @order.Price ,-
+                </td>
+                <td>
+                    @order.Count
+                </td>
+                <td>
+                    @(order.Count * order.Price)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

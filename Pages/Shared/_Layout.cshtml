@@ -31,7 +31,7 @@
                             <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="Item/GetAllItems">Items</a>
+                            <a class="nav-link" asp-area="" asp-page="/Item/GetAllItems">Items</a>
                         </li>
                         </li>
                         @{
@@ -57,6 +57,9 @@
                                 {
                                     <li class="nav-item nav-link mr-3">
                                         User:  @Context.User.Identity.Name
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-page="/Order/MyOrders">My Orders</a>
                                     </li>
                                 }
                                 <li class="nav-item">
